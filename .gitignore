@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Uploads
+backend/uploads/avatars/*
+backend/uploads/products/*
+backend/uploads/pets/*
+backend/uploads/news/*
+!backend/uploads/**/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+
+# Database
+*.db
+
+# Archive (old code)
+archive/
