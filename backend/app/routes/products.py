@@ -11,7 +11,7 @@ def list_products():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 20, type=int)
     category = request.args.get('category')
-    keyword = request.args.get('keyword')
+    keyword = request.args.get('keyword') or request.args.get('search')
 
     query = Product.query.filter_by(is_active=True)
     if category:

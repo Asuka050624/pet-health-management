@@ -1,6 +1,6 @@
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
 
-export const UPLOADS_URL = 'http://localhost:5000/uploads'
+export const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL || '/uploads'
 
 export const PET_TYPES = ['dog', 'cat', 'bird', 'fish', 'rabbit', 'other']
 

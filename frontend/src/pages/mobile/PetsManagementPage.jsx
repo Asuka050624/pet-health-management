@@ -58,6 +58,8 @@ function PetFormModal({ visible, pet, onClose, onSubmit }) {
         ...form,
         name: form.name.trim(),
         age: form.age ? Number(form.age) : undefined,
+        breed: form.breed.trim() || undefined,
+        birthday: form.birthday || undefined,
       }
       await onSubmit(payload)
       onClose()

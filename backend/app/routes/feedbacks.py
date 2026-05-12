@@ -31,7 +31,8 @@ def create_feedback():
     if not data.get('content'):
         return error_response('请填写反馈内容')
 
-    fb_id = f"FB{int(db.func.unix_timestamp(db.func.now()) * 1000)}"
+    import time
+    fb_id = f"FB{int(time.time() * 1000)}"
     feedback = Feedback(
         id=fb_id,
         user_id=user_id,

@@ -58,8 +58,8 @@ export default function FeedbackPage() {
     setListLoading(true)
     setListError('')
     try {
-      const { data } = await getFeedbacks({ page: p, pageSize })
-      const list = data.data?.list || data.data || data.list || data || []
+      const { data } = await getFeedbacks({ page: p, per_page: pageSize })
+      const list = data.data || []
       const t = data.data?.total || data.total || list.length
       setFeedbacks(list)
       setTotal(t)

@@ -7,7 +7,8 @@ def create_order(user_id, payment_method=None):
     if not cart_items:
         return None, '购物车为空'
 
-    order_id = f"ORD{int(db.func.unix_timestamp(db.func.now()) * 1000)}"
+    import time
+    order_id = f"ORD{int(time.time() * 1000)}"
     total = 0
     order_items = []
 

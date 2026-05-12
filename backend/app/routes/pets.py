@@ -24,6 +24,11 @@ def create_pet():
     if not data.get('name'):
         return error_response('宠物名称为必填项')
 
+    from datetime import date as dt_date
+    birthday = data.get('birthday')
+    if birthday and isinstance(birthday, str):
+        birthday = dt_date.fromisoformat(birthday)
+
     pet = Pet(
         user_id=user_id,
         name=data['name'],
@@ -32,7 +37,7 @@ def create_pet():
         breed=data.get('breed'),
         age=data.get('age'),
         gender=data.get('gender', 'unknown'),
-        birthday=data.get('birthday'),
+        birthday=birthday,
         image=data.get('image'),
     )
     db.session.add(pet)
@@ -57,9 +62,13 @@ def update_pet(pet_id):
         return error_response('宠物不存在', 404)
 
     data = request.get_json() or {}
+    from datetime import date as dt_date
     for field in ['name', 'type', 'other_type', 'breed', 'age', 'gender', 'birthday', 'image']:
-        if field in data:
-            setattr(pet, field, data[field])
+        if field in data and data[field] is not None and data[field] != '':
+            value = data[field]
+            if field == 'birthday' and isinstance(value, str):
+                value = dt_date.fromisoformat(value)
+            setattr(pet, field, value)
 
     db.session.commit()
     return success_response(pet.to_dict(), '宠物信息已更新')

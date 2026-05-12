@@ -69,8 +69,8 @@ export default function ReservationPage() {
     setListLoading(true)
     setListError('')
     try {
-      const { data } = await getReservations({ page: p, pageSize })
-      const list = data.data?.list || data.data || data.list || data || []
+      const { data } = await getReservations({ page: p, per_page: pageSize })
+      const list = data.data || []
       const t = data.data?.total || data.total || list.length
       setReservations(list)
       setTotal(t)
@@ -127,9 +127,11 @@ export default function ReservationPage() {
     if (!validateForm()) return
     setSubmitting(true)
     try {
+      const doctorOption = DOCTOR_OPTIONS.find((d) => d.value === Number(form.doctor))
       await createReservation({
         ...form,
         doctor: Number(form.doctor),
+        doctor_name: doctorOption ? doctorOption.label : '',
       })
       showToast('预约提交成功', 'success')
       // Reset form

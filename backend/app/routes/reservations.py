@@ -33,17 +33,19 @@ def create_reservation():
         if not data.get(field):
             return error_response(f'缺少必填字段: {field}')
 
-    res_id = f"RES{int(db.func.unix_timestamp(db.func.now()) * 1000)}"
+    import time
+    from datetime import date, time as dt_time
+    res_id = f"RES{int(time.time() * 1000)}"
     reservation = Reservation(
         id=res_id,
         user_id=user_id,
         pet_name=data['pet_name'],
         pet_type=data['pet_type'],
         symptoms=data['symptoms'],
-        doctor=data['doctor'],
+        doctor=str(data['doctor']),
         doctor_name=data['doctor_name'],
-        appointment_date=data['appointment_date'],
-        appointment_time=data['appointment_time'],
+        appointment_date=date.fromisoformat(data['appointment_date']),
+        appointment_time=dt_time.fromisoformat(data['appointment_time']),
         contact_name=data['contact_name'],
         contact_phone=data['contact_phone'],
     )

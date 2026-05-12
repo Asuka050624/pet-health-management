@@ -1,6 +1,6 @@
 import os
 import uuid
-from flask import Blueprint, request, current_app
+from flask import Blueprint, request, current_app, send_from_directory
 from werkzeug.utils import secure_filename
 from ..utils.decorators import jwt_required, admin_required, get_current_user_id
 from ..utils.error_handlers import success_response, error_response

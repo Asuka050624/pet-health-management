@@ -17,7 +17,8 @@ export default function MessagesPage() {
     setError('')
     try {
       const { data } = await getMessages()
-      setMessages(data.data || [])
+      const responseData = data.data || data || {}
+      setMessages(responseData.items || responseData || [])
     } catch (err) {
       setError(err.response?.data?.error || '加载消息失败')
       setMessages([])

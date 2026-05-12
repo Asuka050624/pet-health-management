@@ -40,6 +40,12 @@ def create_app(config_name=None):
     def health():
         return jsonify({'status': 'ok'})
 
+    # Serve uploaded files
+    @app.route('/uploads/<path:filename>')
+    def uploaded_file(filename):
+        from flask import send_from_directory
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
     return app
 
 
