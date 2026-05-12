@@ -1,5 +1,7 @@
 # 宠物健康管理系统
 
+[![CI](https://github.com/Asuka050624/pet-health-management/actions/workflows/ci.yml/badge.svg)](https://github.com/Asuka050624/pet-health-management/actions)
+
 全栈宠物健康管理平台，包含移动用户端和管理员后台。
 
 ## 技术栈
